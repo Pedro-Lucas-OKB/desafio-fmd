@@ -29,12 +29,5 @@ public class PalestraMap : IEntityTypeConfiguration<Palestra>
             .IsRequired()
             .HasColumnType("SMALLDATETIME")
             .HasDefaultValueSql("GETDATE()");
-        
-        // Relacionamentos
-        
-        builder.HasMany(p => p.Participantes)
-            .WithOne(p => p.Palestra)
-            .HasForeignKey(p => p.PalestraId)
-            .OnDelete(DeleteBehavior.Restrict);
     }
 }

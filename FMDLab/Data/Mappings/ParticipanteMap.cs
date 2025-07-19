@@ -37,6 +37,6 @@ public class ParticipanteMap : IEntityTypeConfiguration<Participante>
         builder.HasOne(p => p.Palestra)
             .WithMany(p => p.Participantes)
             .HasForeignKey(p => p.PalestraId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }
