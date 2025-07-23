@@ -1,5 +1,6 @@
 using FMDLab.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace FMDLab.Controllers;
 
@@ -14,6 +15,7 @@ public class TriviaController : ControllerBase
         _triviaService = triviaService;
     }
 
+    [SwaggerOperation(Summary = "Retorna uma pergunta e uma resposta do Trivia.")]
     [HttpGet("")]
     public async Task<IActionResult> GetAsync()
     {

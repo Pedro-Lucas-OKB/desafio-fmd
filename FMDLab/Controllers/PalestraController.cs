@@ -5,6 +5,7 @@ using FMDLab.ViewModels.Palestras;
 using FMDLab.ViewModels.Participantes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace FMDLab.Controllers;
 
@@ -12,6 +13,7 @@ namespace FMDLab.Controllers;
 [Route("api/")]
 public class PalestraController : ControllerBase
 {
+    [SwaggerOperation(Summary = "Retorna todas as palestras disponíveis.")]
     [HttpGet("palestras")]
     public async Task<ActionResult> GetAsync(
         [FromServices] ApplicationDbContext context)
@@ -39,6 +41,7 @@ public class PalestraController : ControllerBase
         }
     }
     
+    [SwaggerOperation(Summary = "Retorna uma palestra a partir de seu ID.")]
     [HttpGet("palestras/{id:guid}")]
     public async Task<ActionResult> GetByIdAsync(
         [FromRoute] Guid id,
@@ -61,6 +64,7 @@ public class PalestraController : ControllerBase
         }
     }
 
+    [SwaggerOperation(Summary = "Cria uma nova palestra.")]
     [HttpPost("palestras")]
     public async Task<IActionResult> CreateAsync(
         [FromBody] CreatePalestraViewModel model,

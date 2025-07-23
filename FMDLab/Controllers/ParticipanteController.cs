@@ -5,6 +5,7 @@ using FMDLab.ViewModels.Palestras;
 using FMDLab.ViewModels.Participantes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace FMDLab.Controllers;
 
@@ -12,6 +13,7 @@ namespace FMDLab.Controllers;
 [Route("api/")]
 public class ParticipanteController : ControllerBase
 {
+    [SwaggerOperation(Summary = "Retorna todos os participantes cadastrados na base de dados.")]
     [HttpGet("participantes")]
     public async Task<ActionResult> GetAsync(
         [FromServices] ApplicationDbContext context)
@@ -38,6 +40,7 @@ public class ParticipanteController : ControllerBase
         }
     }
     
+    [SwaggerOperation(Summary = "Retorna um participante cadastrado a partir de seu ID.")]
     [HttpGet("participantes/{id:guid}")]
     public async Task<ActionResult> GetByIdAsync(
         [FromRoute] Guid id,
@@ -60,6 +63,7 @@ public class ParticipanteController : ControllerBase
         }
     }
     
+    [SwaggerOperation(Summary = "Cria um novo participante na base de dados.")]
     [HttpPost("participantes")]
     public async Task<IActionResult> CreateAsync(
         [FromBody] CreateParticipanteViewModel model,
@@ -103,6 +107,7 @@ public class ParticipanteController : ControllerBase
         }
     }
 
+    [SwaggerOperation(Summary = "Atualiza os dados de um participante cadastrado a partir de seu ID.")]
     [HttpPut("participantes/{id:guid}")]
     public async Task<IActionResult> UpdateAsync(
         [FromRoute] Guid id,
@@ -140,6 +145,7 @@ public class ParticipanteController : ControllerBase
         }
     }
     
+    [SwaggerOperation(Summary = "Exclui um participante cadastrado a partir de seu ID.")]
     [HttpDelete("participantes/{id:guid}")]
     public async Task<IActionResult> DeleteAsync(
         [FromRoute] Guid id,
