@@ -1,5 +1,7 @@
 using System.Text.Json.Serialization;
 using FMDLab.Data;
+using FMDLab.Interfaces;
+using FMDLab.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -38,5 +40,6 @@ app.Run();
 
 void ConfigureServices(WebApplicationBuilder builder)
 {
+    builder.Services.AddHttpClient<ITriviaService, TriviaService>();
     builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite("Data Source=app.db"));
 }
